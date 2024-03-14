@@ -1,5 +1,4 @@
 import numpy as np
-import pandas as pd
 
 class Node():
     def __init__(self, feature = None, threshold = None, left = None, right = None, value = None):
@@ -72,10 +71,9 @@ class DecisionTree():
 
     def leaf_node(self, y):
         return np.mean(y)
-    
+
     def print_tree(self, tree=None, indent=" "):
         ''' function to print the tree '''
-        
         if not tree:
             tree = self.root
 
@@ -83,21 +81,8 @@ class DecisionTree():
             print(tree.value)
 
         else:
-            print("X_"+str(tree.feature), "<=", tree.threshold, "?")
+            print("X_"+str(tree.feature), "<=", tree.threshold)
             print("%sleft:" % (indent), end="")
             self.print_tree(tree.left, indent + indent)
             print("%sright:" % (indent), end="")
             self.print_tree(tree.right, indent + indent)
-
-    def __mse(self, left, right):
-        total_samples = len(left) + len(right)
-        mse_left = self.__mean_squared_error(left)
-        mse_right = self.__mean_squared_error(right)
-        mse_total = (len(left) / total_samples) * mse_left + (len(right) / total_samples) * mse_right
-        return mse_total
-
-    def __mean_squared_error(self, y):
-        y_mean = y.mean()
-        mse = np.square(np.subtract(y, y_mean)).mean()
-        return mse
-
