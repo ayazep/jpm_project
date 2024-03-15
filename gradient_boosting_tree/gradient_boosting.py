@@ -1,6 +1,7 @@
 import numpy as np
+import pandas as pd
 from gradient_boosting_tree.decision_tree import DecisionTree
-import matplotlib.pyplot as plt
+
 class GradientBoostingRegressor():
     def __init__(self, max_depth = 3, min_samples = 5, learning_rate = 0.1, n_estimators = 50):
         self.max_depth = max_depth
@@ -13,7 +14,7 @@ class GradientBoostingRegressor():
             tree = DecisionTree(min_samples = self.min_samples, max_depth = self.max_depth)
             self.trees.append(tree)
 
-    def fit(self, X, y):
+    def fit(self, X: pd.DataFrame, y):
         y_pred = np.copy(y)
         for tree in self.trees:
             tree.fit(X, y_pred)
