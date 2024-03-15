@@ -137,18 +137,3 @@ class DecisionTree():
             float: The value of the leaf node.
         """
         return np.mean(y)
-
-    def print_tree(self, tree=None, indent=" "):
-        ''' function to print the tree '''
-        if not tree:
-            tree = self.root
-
-        if tree.value is not None:
-            print(tree.value)
-
-        else:
-            print("X_"+str(tree.feature), "<=", tree.threshold)
-            print("%sleft:" % (indent), end="")
-            self.print_tree(tree.left, indent + indent)
-            print("%sright:" % (indent), end="")
-            self.print_tree(tree.right, indent + indent)
