@@ -110,14 +110,14 @@ def train_test(X: pd.DataFrame, y: pd.Series, train_size: float = 0.8, seed: int
     return X_train, X_test, y_train, y_test
 
 
-def k_fold(model, k_X_train: pd.DataFrame, k_y_train: pd.Series, n_folds: int, seed: int = None):
+def k_fold(model, k_X_train: pd.DataFrame, k_y_train: pd.Series, n_folds: int = 5, seed: int = None):
     """Perform k-fold cross-validation.
 
     Args:
         model: The model to be evaluated.
         k_X_train (pd.DataFrame): The input features for training.
         k_y_train (pd.Series): The target values for training.
-        n_folds (int): Number of folds for cross-validation.
+        n_folds (int, optional): Number of folds for cross-validation. Defaults to 5.
         seed (int, optional): Random seed for reproducibility. Defaults to None.
 
     Returns:
